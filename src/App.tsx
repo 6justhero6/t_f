@@ -1,7 +1,7 @@
-import {Main} from './screen/Main';
+import { Main } from './screen/Main';
 
-import {store} from './store';
-import {message} from 'antd';
+import { store } from './store';
+import { message } from 'antd';
 
 function App() {
   const [messageApi, contextHolder] = message.useMessage();

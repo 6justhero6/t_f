@@ -1,6 +1,6 @@
-import {User} from './User';
-import {TodoList} from './TodoList';
-import {ModalForm} from './ModalForm';
+import { User } from './User';
+import { TodoList } from './TodoList';
+import { ModalForm } from './ModalForm';
 
 const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
@@ -14,5 +14,4 @@ export const store = {
   user,
   todoList,
   modalForm,
-}
-
+};

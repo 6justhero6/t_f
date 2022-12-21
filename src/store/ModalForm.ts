@@ -1,9 +1,9 @@
-import {action, makeObservable, observable} from "mobx";
-import {FormInstance} from 'antd';
-import {AuthForm} from '../component/AuthForm/AuthForm';
-import {CreateTodoForm} from '../component/CreateTodoForm/CreateTodoForm';
-import {PatchTodoForm} from '../component/PatchTodoForm/PatchTodoForm';
-import {FC} from 'react';
+import { action, makeObservable, observable } from 'mobx';
+import { FormInstance } from 'antd';
+import { AuthForm } from '../component/AuthForm/AuthForm';
+import { CreateTodoForm } from '../component/CreateTodoForm/CreateTodoForm';
+import { PatchTodoForm } from '../component/PatchTodoForm/PatchTodoForm';
+import { FC } from 'react';
 
 export interface IModalFormRef {
   form: FormInstance;
@@ -14,7 +14,7 @@ class ModalForm {
   loading = false;
   FormComponent: FC<IModalFormRef> | undefined;
   title = '';
-  onSubmit: (values: any) => void = () => {}
+  onSubmit: (values: any) => void = () => {};
 
   constructor() {
     makeObservable(this, {
@@ -26,16 +26,19 @@ class ModalForm {
       setLoading: action,
       openModal: action,
       close: action,
-    })
+    });
   }
 
-  defaultOpen(onSubmit:(values: any) => void) {
+  defaultOpen(onSubmit: (values: any) => void) {
     this.open = true;
     this.loading = false;
     this.onSubmit = onSubmit;
   }
 
-  openModal(modal: 'auth' | 'createTask' | 'patchTask' | 'close', onSubmit:(values: any) => void) {
+  openModal(
+    modal: 'auth' | 'createTask' | 'patchTask' | 'close',
+    onSubmit: (values: any) => void
+  ) {
     switch (modal) {
       case 'auth':
         this.defaultOpen(onSubmit);
@@ -64,9 +67,6 @@ class ModalForm {
   setLoading(loading = true) {
     this.loading = loading;
   }
-
 }
 
-export {
-  ModalForm
-}
+export { ModalForm };

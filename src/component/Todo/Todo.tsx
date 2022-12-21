@@ -1,12 +1,12 @@
-import {Button, List} from 'antd';
-import {observer} from 'mobx-react-lite';
-import {Todo as TodoStore} from '../../store/Todo';
-import {CheckOutlined, FormOutlined} from '@ant-design/icons';
-import {formHandler} from '../../utils/formHandler';
-import {updateTask} from '../../fetcher/updateTask';
-import {ModalForm} from '../../store/ModalForm';
-import {User} from '../../store/User';
-import {MessageInstance} from 'antd/es/message/interface';
+import { Button, List } from 'antd';
+import { observer } from 'mobx-react-lite';
+import { Todo as TodoStore } from '../../store/Todo';
+import { CheckOutlined, FormOutlined } from '@ant-design/icons';
+import { formHandler } from '../../utils/formHandler';
+import { updateTask } from '../../fetcher/updateTask';
+import { ModalForm } from '../../store/ModalForm';
+import { User } from '../../store/User';
+import { MessageInstance } from 'antd/es/message/interface';
 
 interface ITodo {
   item: TodoStore;
@@ -38,7 +38,7 @@ export const Todo = observer<ITodo>(({ item, modalForm, user, messageApi }) => {
     const markDone = async () => {
       const patchRes = await updateTask(task.id, { done: true });
       if (patchRes.ok) {
-        return task.done = true;
+        return (task.done = true);
       }
       if (patchRes.status === 401) {
         messageApi.open({
@@ -46,24 +46,32 @@ export const Todo = observer<ITodo>(({ item, modalForm, user, messageApi }) => {
           content: 'Auth required',
         });
       }
-    }
+    };
 
     return [
       <Button key="list-done" onClick={markDone}>
         Make done
       </Button>,
-      <Button key="list-edit" onClick={() => modalForm.openModal('patchTask', editTaskFormHandler)}>
+      <Button
+        key="list-edit"
+        onClick={() => modalForm.openModal('patchTask', editTaskFormHandler)}
+      >
         Edit text
-      </Button>
+      </Button>,
     ];
-  }
+  };
 
-  return <List.Item
-    actions={getActions(item, user.isAdmin)}
-  >
-    <List.Item.Meta
-      title={<p>{item.email} {item.userName} { item.done && <CheckOutlined /> } { item.edited && <FormOutlined /> }</p>}
-      description={item.text}
-    />
-  </List.Item>
+  return (
+    <List.Item actions={getActions(item, user.isAdmin)}>
+      <List.Item.Meta
+        title={
+          <p>
+            {item.email} {item.userName} {item.done && <CheckOutlined />}{' '}
+            {item.edited && <FormOutlined />}
+          </p>
+        }
+        description={item.text}
+      />
+    </List.Item>
+  );
 });

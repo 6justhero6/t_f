@@ -1,6 +1,9 @@
-import {ModalForm} from '../store/ModalForm';
+import { ModalForm } from '../store/ModalForm';
 
-export const formHandler = (handler: (values: any) => Promise<boolean>, modalForm: ModalForm) => {
+export const formHandler = (
+  handler: (values: any) => Promise<boolean>,
+  modalForm: ModalForm
+) => {
   return async (values: any) => {
     modalForm.setLoading(true);
     const handlerRes = await handler(values);
@@ -9,5 +12,5 @@ export const formHandler = (handler: (values: any) => Promise<boolean>, modalFor
     } else {
       modalForm.setLoading(false);
     }
-  }
-}
+  };
+};
