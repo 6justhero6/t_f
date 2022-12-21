@@ -12,9 +12,6 @@ export const ModalForm = ({ FormComponent, open, title, onSubmit, loading, onClo
       .validateFields()
       .then( (values) => {
         onSubmit(values);
-      })
-      .catch((info) => {
-        console.log('Validate Failed:', info);
       });
   }
 

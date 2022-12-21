@@ -4,7 +4,6 @@ export class Api {
   host = process.env.API || 'http://localhost:5000';
 
   private _fetch(url: string, method: 'POST' | 'GET' | 'PATCH', body?: any) {
-    console.log(body);
     return fetch(this.host + url, { method, credentials: 'include', body: JSON.stringify(body), headers: { ['content-type']: 'application/json' } });
   }
 
