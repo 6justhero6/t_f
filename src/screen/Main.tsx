@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { store } from '../store';
-import { Button, Col, Layout, List, Pagination, Row, Select } from 'antd';
+import { Button, Col, Layout, List, Pagination, Row } from 'antd';
 import { ModalForm } from '../component/ModalForm/ModalForm';
 import { createTask } from '../fetcher/createTask';
 import { MainHeader } from '../component/MainHeader/MainHeader';
@@ -8,6 +8,7 @@ import { formHandler } from '../utils/formHandler';
 import { Todo } from '../component/Todo/Todo';
 import './Main.module.css';
 import { MessageInstance } from 'antd/es/message/interface';
+import { TodoSort } from '../component/TodoSort/TodoSort';
 
 export const Main = observer<{
   store: typeof store;
@@ -29,68 +30,27 @@ export const Main = observer<{
     return createTaskRes.ok;
   };
 
+  const onCreateTaskClick = () =>
+    store.modalForm.openModal(
+      'createTask',
+      formHandler(createTaskHandler, store.modalForm)
+    );
+
   const onSortChange = (value: typeof store.todoList.sort) =>
     store.todoList.setSort(value);
   const onPageChange = (value: number) => store.todoList.setPage(value - 1);
 
   return (
-    <Layout>
+    <Layout className="layout">
       <MainHeader store={store} messageApi={messageApi} />
-
       <Row gutter={[16, 16]}>
         <Col>
-          <Button
-            style={{ margin: 12 }}
-            onClick={() =>
-              store.modalForm.openModal(
-                'createTask',
-                formHandler(createTaskHandler, store.modalForm)
-              )
-            }
-          >
+          <Button style={{ margin: 12 }} onClick={onCreateTaskClick}>
             Add task
           </Button>
         </Col>
         <Col>
-          <Select
-            className="custom-select"
-            defaultValue={store.todoList.sort}
-            onChange={onSortChange}
-            options={[
-              {
-                value: 'id_asc',
-                label: 'Id ↑',
-              },
-              {
-                value: 'id_desc',
-                label: 'Id ↓',
-              },
-              {
-                value: 'email_asc',
-                label: 'Email ↑',
-              },
-              {
-                value: 'email_desc',
-                label: 'Email ↓',
-              },
-              {
-                value: 'userName_asc',
-                label: 'User name ↑',
-              },
-              {
-                value: 'userName_desc',
-                label: 'User name ↓',
-              },
-              {
-                value: 'done_asc',
-                label: 'Status ↑',
-              },
-              {
-                value: 'done_desc',
-                label: 'Status ↓',
-              },
-            ]}
-          />
+          <TodoSort sort={store.todoList.sort} onChange={onSortChange} />
         </Col>
       </Row>
 

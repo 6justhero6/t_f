@@ -2,7 +2,7 @@ import { Todo } from './Todo';
 import { action, makeObservable, observable } from 'mobx';
 import { getTasks } from '../fetcher/getTasks';
 
-type Sort =
+export type Sort =
   | 'email_asc'
   | 'text_asc'
   | 'userName_asc'
