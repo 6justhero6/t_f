@@ -78,7 +78,7 @@ export const Main = observer<{
         <Col>
           <Pagination
             onChange={onPageChange}
-            defaultCurrent={store.todoList.page + 1}
+            current={store.todoList.page + 1}
             total={store.todoList.count}
             pageSize={store.todoList.countOnPage}
           />
