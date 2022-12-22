@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.add-button {
+  margin: 12px;
+}
+
 .custom-select {
   width: 120px;
   margin: 12px;

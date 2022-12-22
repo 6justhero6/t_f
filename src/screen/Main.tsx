@@ -45,7 +45,7 @@ export const Main = observer<{
       <MainHeader store={store} messageApi={messageApi} />
       <Row gutter={[16, 16]}>
         <Col>
-          <Button style={{ margin: 12 }} onClick={onCreateTaskClick}>
+          <Button className="add-button" onClick={onCreateTaskClick}>
             Add task
           </Button>
         </Col>
