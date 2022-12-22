@@ -1,5 +1,5 @@
 export class Api {
-  host = process.env.API || 'http://localhost:5000';
+  host = process.env.REACT_APP_API || 'http://localhost:5000';
 
   private _fetch(url: string, method: 'POST' | 'GET' | 'PATCH', body?: any) {
     return fetch(this.host + url, {
