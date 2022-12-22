@@ -18,7 +18,7 @@ class TodoList {
   constructor(
     public list: Todo[] = [],
     public page = 0,
-    public count = 10,
+    public count = 0,
     public sort: Sort = 'id_asc',
     public countOnPage = 5
   ) {
